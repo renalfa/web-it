@@ -50,7 +50,7 @@ class Footer extends React.Component {
                     Thank you for supporting us!
                     </h3>
                     <h4 className="mb-0 font-weight-light">
-                    Let's get in touch on any of these platforms.
+                    Let &quot;s get in touch on any of these platforms.
                     </h4>
                 </Col>
                 <Col className="text-lg-center btn-wrapper ml-lg-auto" lg="6">
@@ -117,12 +117,12 @@ class Footer extends React.Component {
                 <Col md="6">
                     <div className="copyright">
                         © {new Date().getFullYear()}{" "}
-                        <a
+                        <Link
                             href="https://www.viapulsa.com/"
                             target="_blank"
                         >
                             Viapulsa
-                        </a>
+                        </Link>
                         .
                     </div>
                 </Col>

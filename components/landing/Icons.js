@@ -76,7 +76,7 @@ class Icons extends React.Component {
                   <i className="icon ni ni-chart-bar-32" />
                 </div>
                 <span className="blur-hidden display-3 text-warning text-center">
-                  " It's Important To Connect Like You Are Connected. "
+                  &quot; It&apos;s Important To Connect Like You Are Connected.  &quot;
                 </span>
               {/* </a> */}
             </div>

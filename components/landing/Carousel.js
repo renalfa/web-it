@@ -57,7 +57,7 @@ class Carousel extends React.Component {
                 <p className="lead text-white mt-4">
                   Argon Design System comes with four pre-built pages to help
                   you get started faster. You can change the text and images and
-                  you're good to go.
+                  you&apos;re good to go.
                 </p>
                 <Button
                   className="btn-white mt-4"
