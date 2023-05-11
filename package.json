@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "build": "next --openssl-legacy-provider build",
+    "start": "next --openssl-legacy-provider start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -28,5 +28,8 @@
   "devDependencies": {
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2"
+  },
+  "engines": {
+    "node": "16.16.0"
   }
 }
