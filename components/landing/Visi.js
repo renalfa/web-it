@@ -21,7 +21,7 @@ import React from "react";
 import { Button, Container, Row, Col } from "reactstrap";
 import Image from "next/image";
 
-class Icons extends React.Component {
+class Visi extends React.Component {
   render() {
     return (
       <>
@@ -38,46 +38,43 @@ class Icons extends React.Component {
                 />
                 {/* <h2 className="display-3">Lorem Ipsum</h2> */}
                 <p className="lead">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus nulla at volutpat diam ut. Enim facilisis gravida neque convallis.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Lectus nulla at volutpat diam ut. Enim facilisis gravida neque
+                  convallis.
                 </p>
                 <div className="btn-wrapper">
                   <Button
-                    color="primary"
-                    href="https://demos.creative-tim.com/argon-design-system-react/#/documentation/icons?ref=adsr-landing-page"
-                  >
-                    View demo icons
-                  </Button>
-                  <Button
-                    className="mt-3 mt-md-0"
-                    color="default"
-                    href="https://nucleoapp.com/?ref=1712"
+                    color="warning"
+                    href="https://viapulsa.com"
                     target="_blank"
                   >
-                    View all icons
+                    Kunjungi Kami
                   </Button>
                 </div>
               </Col>
             </Row>
             <div className="blur--hover">
               {/* <a href="https://demos.creative-tim.com/argon-design-system-react/#/documentation/icons?ref=adsr-landing-page"> */}
-                <div className="icons-container blur-item mt-5 on-screen">
-                  <i className="icon ni ni-diamond" />
-                  <i className="icon icon-sm ni ni-album-2" />
-                  <i className="icon icon-sm ni ni-app" />
-                  <i className="icon icon-sm ni ni-atom" />
-                  <i className="icon ni ni-bag-17" />
-                  <i className="icon ni ni-bell-55" />
-                  <i className="icon ni ni-credit-card" />
-                  <i className="icon icon-sm ni ni-briefcase-24" />
-                  <i className="icon icon-sm ni ni-building" />
-                  <i className="icon icon-sm ni ni-button-play" />
-                  <i className="icon ni ni-calendar-grid-58" />
-                  <i className="icon ni ni-camera-compact" />
-                  <i className="icon ni ni-chart-bar-32" />
-                </div>
-                <span className="blur-hidden display-3 text-warning text-center">
-                  &quot; It&apos;s Important To Connect Like You Are Connected.  &quot;
-                </span>
+              <div className="icons-container blur-item mt-5 on-screen">
+                <i className="icon ni ni-diamond" />
+                <i className="icon icon-sm ni ni-album-2" />
+                <i className="icon icon-sm ni ni-app" />
+                <i className="icon icon-sm ni ni-atom" />
+                <i className="icon ni ni-bag-17" />
+                <i className="icon ni ni-bell-55" />
+                <i className="icon ni ni-credit-card" />
+                <i className="icon icon-sm ni ni-briefcase-24" />
+                <i className="icon icon-sm ni ni-building" />
+                <i className="icon icon-sm ni ni-button-play" />
+                <i className="icon ni ni-calendar-grid-58" />
+                <i className="icon ni ni-camera-compact" />
+                <i className="icon ni ni-chart-bar-32" />
+              </div>
+              <span className="blur-hidden display-3 text-warning text-center">
+                &quot; It&apos;s Important To Connect Like You Are Connected.
+                &quot;
+              </span>
               {/* </a> */}
             </div>
           </Container>
@@ -87,4 +84,4 @@ class Icons extends React.Component {
   }
 }
 
-export default Icons;
+export default Visi;

@@ -1,135 +1,90 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import {
-    Badge,
-    Button,
-    Card,
-    CardBody,
-    Container,
-    Row,
-    Col
-  } from "reactstrap";
+  Badge,
+  Button,
+  Card,
+  CardBody,
+  Container,
+  Row,
+  Col,
+  CardImg,
+} from "reactstrap";
+import Image from "next/image";
+// import { artikel } from "../../assets/data/data";
+import parser from "html-react-parser";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import { useRouter } from "next/router";
+import { collection, getDocs } from "firebase/firestore";
+import { firestore } from "../../config/firebase";
 
 const Artikel = () => {
-    return (
-        <section className="section section-lg pt-lg-0 mt--100">
-            <Container>
-            <Row className="justify-content-center">
-                <Col lg="12">
-                <Row className="row-grid">
-                    <Col lg="4">
-                    <Card className="card-lift--hover shadow border-0">
-                        <CardBody className="py-5">
-                        <div className="icon icon-shape icon-shape-primary rounded-circle mb-4">
-                            <i className="ni ni-check-bold" />
-                        </div>
-                        <h6 className="text-primary text-uppercase">
-                            Download Argon
-                        </h6>
-                        <p className="description mt-3">
-                            Argon is a great free UI package based on Bootstrap
-                            4 that includes the most important components and
-                            features.
-                        </p>
-                        <div>
-                            <Badge color="primary" pill className="mr-1">
-                            design
-                            </Badge>
-                            <Badge color="primary" pill className="mr-1">
-                            system
-                            </Badge>
-                            <Badge color="primary" pill className="mr-1">
-                            creative
-                            </Badge>
-                        </div>
-                        <Button
-                            className="mt-4"
-                            color="primary"
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                        >
-                            Learn more
-                        </Button>
-                        </CardBody>
-                    </Card>
-                    </Col>
-                    <Col lg="4">
-                    <Card className="card-lift--hover shadow border-0">
-                        <CardBody className="py-5">
-                        <div className="icon icon-shape icon-shape-success rounded-circle mb-4">
-                            <i className="ni ni-istanbul" />
-                        </div>
-                        <h6 className="text-success text-uppercase">
-                            Build Something
-                        </h6>
-                        <p className="description mt-3">
-                            Argon is a great free UI package based on Bootstrap
-                            4 that includes the most important components and
-                            features.
-                        </p>
-                        <div>
-                            <Badge color="success" pill className="mr-1">
-                            business
-                            </Badge>
-                            <Badge color="success" pill className="mr-1">
-                            vision
-                            </Badge>
-                            <Badge color="success" pill className="mr-1">
-                            success
-                            </Badge>
-                        </div>
-                        <Button
-                            className="mt-4"
-                            color="success"
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                        >
-                            Learn more
-                        </Button>
-                        </CardBody>
-                    </Card>
-                    </Col>
-                    <Col lg="4">
-                    <Card className="card-lift--hover shadow border-0">
-                        <CardBody className="py-5">
-                        <div className="icon icon-shape icon-shape-warning rounded-circle mb-4">
-                            <i className="ni ni-planet" />
-                        </div>
-                        <h6 className="text-warning text-uppercase">
-                            Prepare Launch
-                        </h6>
-                        <p className="description mt-3">
-                            Argon is a great free UI package based on Bootstrap
-                            4 that includes the most important components and
-                            features.
-                        </p>
-                        <div>
-                            <Badge color="warning" pill className="mr-1">
-                            marketing
-                            </Badge>
-                            <Badge color="warning" pill className="mr-1">
-                            product
-                            </Badge>
-                            <Badge color="warning" pill className="mr-1">
-                            launch
-                            </Badge>
-                        </div>
-                        <Button
-                            className="mt-4"
-                            color="warning"
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                        >
-                            Learn more
-                        </Button>
-                        </CardBody>
-                    </Card>
-                    </Col>
-                </Row>
-                </Col>
-            </Row>
-            </Container>
-        </section>
-    )
-}
+  const router = useRouter();
+  const [artikel, setArtikel] = useState([]);
 
-export default Artikel
+  useEffect(() => {
+    const colRef = collection(firestore, "content_it");
+    getDocs(colRef).then((querySnapshot) => {
+      let array = [];
+      querySnapshot.forEach((doc) => array.push(doc.data()));
+      setArtikel(array);
+    });
+  }, []);
+
+  return (
+    <section className="section section-lg pt-lg-0 mt--100">
+      <Container>
+        <Row className="justify-content-center">
+          <Col lg="12">
+            <Swiper
+              style={{ padding: 40 }}
+              slidesPerView={"auto"}
+              spaceBetween={15}
+              pagination={{ clickable: true }}
+              modules={[Pagination]}
+            >
+              {artikel.map((data, i) => (
+                <SwiperSlide key={i} style={{ maxWidth: 300 }}>
+                  <Card className="card-lift--hover shadow border-0">
+                    <CardImg
+                      top
+                      src={data?.imgurl}
+                      style={{
+                        maxHeight: 180,
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                    <CardBody className="py-4">
+                      <h6 className="text-primary text-uppercase">
+                        {data?.judul}
+                      </h6>
+                      <p className="description mt-3">
+                        {parser(
+                          data.content.slice(0, 150) +
+                            (data.content.length > 150 ? "..." : "")
+                        )}
+                      </p>
+                      <Button
+                        className="mt-2"
+                        color="primary"
+                        onClick={() => router.replace(`/${data?.judul}`)}
+                      >
+                        Learn more
+                      </Button>
+                    </CardBody>
+                  </Card>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </Col>
+        </Row>
+      </Container>
+    </section>
+  );
+};
+
+export default Artikel;

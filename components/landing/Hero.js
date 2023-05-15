@@ -1,25 +1,8 @@
-/*!
-
-=========================================================
-* Argon Design System React - v1.1.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-design-system-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-design-system-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
-import { TypeAnimation } from 'react-type-animation';
+import { TypeAnimation } from "react-type-animation";
 
 class Hero extends React.Component {
   render() {
@@ -51,20 +34,22 @@ class Hero extends React.Component {
                       src={require("assets/logo.webp")}
                       style={{ width: "200px" }}
                     /> */}
-                    <h2 className="mt-4 display-1">Dont believe in just yourself, believe in your team.</h2>
-                    <div className="d-flex justify-content-center"> 
+                    <h2 className="mt-4 display-1">
+                      Dont believe in just yourself, believe in your team.
+                    </h2>
+                    <div className="d-flex justify-content-center">
                       <p className="lead text-white mr-2">Innovation, We</p>
                       <p className="lead text-white">
                         <TypeAnimation
                           sequence={[
-                          'live It',
-                          1000,
-                          'love it',
-                          1000,
-                          'share it',
-                          1000,
-                          'do it',
-                          1000,
+                            "live It",
+                            1000,
+                            "love it",
+                            1000,
+                            "share it",
+                            1000,
+                            "do it",
+                            1000,
                           ]}
                           repeat={Infinity}
                         />

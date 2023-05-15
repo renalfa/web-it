@@ -1,13 +1,14 @@
 import Head from "next/head";
-import CustomComponents from "../components/custom/Custom-components";
 import DemoNavbar from "../components/Navbars/DemoNavbar";
 import Hero from "../components/landing/Hero";
 import Tim from "../components/landing/Tim";
 import Artikel from "../components/landing/Artikel";
 import Project from "../components/landing/Project";
 import Carousel from "../components/landing/Carousel";
-import Icons from "../components/landing/Icons";
 import Footer from "../components/footer/Footer";
+import Visi from "../components/landing/Visi";
+import { getKonten } from "../config/fungsi";
+import { useEffect } from "react";
 
 export default function Home() {
   return (
@@ -24,11 +25,10 @@ export default function Home() {
       <Hero />
       <Artikel />
       <Project />
-      <Carousel />
-      <Icons />
+      {/* <Carousel /> */}
+      <Visi />
       <Tim />
       <Footer />
-      {/* <CustomComponents /> */}
     </div>
   );
 }
