@@ -25,30 +25,33 @@ import { signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/router";
 
 export const Login = () => {
-    const router = useRouter();
-    const loginWithGoogle = async () => {
-        try {
-            const res = await signInWithPopup(auth, provider);
-            const user = res.user;
-            const q = query(collection(firestore, "adminIT"), where("uid", "==", user.uid));
-            const docs = await getDocs(q);
-            if (docs.docs.length == 0) {
-                await addDoc(collection(firestore, "adminIT"), {
-                    uid: user.uid,
-                    name: user.displayName,
-                    authProvider: "google",
-                    email: user.email,
-                })
-                router.replace("/add");
-                localStorage.setItem("login", "true");
-            }
-            router.replace("/add");
-            localStorage.setItem("login", "true");
-        } catch (error) {
-            console.log(error);
-            router.replace("/login");
-        }
+  const router = useRouter();
+  const loginWithGoogle = async () => {
+    try {
+      const res = await signInWithPopup(auth, provider);
+      const user = res.user;
+      const q = query(
+        collection(firestore, "adminIT"),
+        where("uid", "==", user.uid)
+      );
+      const docs = await getDocs(q);
+      if (docs.docs.length == 0) {
+        await addDoc(collection(firestore, "adminIT"), {
+          uid: user.uid,
+          name: user.displayName,
+          authProvider: "google",
+          email: user.email,
+        });
+        router.replace("/");
+        localStorage.setItem("login", "true");
+      }
+      router.replace("/");
+      localStorage.setItem("login", "true");
+    } catch (error) {
+      console.log(error);
+      router.replace("/login");
     }
+  };
   return (
     <>
       <Head>

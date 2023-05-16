@@ -9,8 +9,6 @@ import {
   Col,
   CardImg,
 } from "reactstrap";
-import Image from "next/image";
-// import { artikel } from "../../assets/data/data";
 import parser from "html-react-parser";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
@@ -21,7 +19,7 @@ import { useRouter } from "next/router";
 import { collection, getDocs } from "firebase/firestore";
 import { firestore } from "../../config/firebase";
 
-const Artikel = () => {
+const Artikel = ({ isLogin }) => {
   const router = useRouter();
   const [artikel, setArtikel] = useState([]);
 
@@ -81,6 +79,7 @@ const Artikel = () => {
               ))}
             </Swiper>
           </Col>
+          {isLogin && <Button href="/add" className="mt-4 btn-warning text-white">Tambahkan Konten</Button>}
         </Row>
       </Container>
     </section>

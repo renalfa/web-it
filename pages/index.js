@@ -7,10 +7,18 @@ import Project from "../components/landing/Project";
 import Carousel from "../components/landing/Carousel";
 import Footer from "../components/footer/Footer";
 import Visi from "../components/landing/Visi";
-import { getKonten } from "../config/fungsi";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    const login = localStorage.getItem("login");
+    console.log(login);
+    if (login === null) setIsLogin(false);
+    else setIsLogin(true);
+  }, [])
+
   return (
     <div>
       <Head>
@@ -21,9 +29,9 @@ export default function Home() {
         />
         <link rel="icon" href="/ico.webp" />
       </Head>
-      <DemoNavbar />
+      <DemoNavbar/>
       <Hero />
-      <Artikel />
+      <Artikel isLogin={isLogin} />
       <Project />
       {/* <Carousel /> */}
       <Visi />

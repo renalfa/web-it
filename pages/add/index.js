@@ -4,15 +4,16 @@ import Insert from "../../components/landing/Insert";
 import { useEffect } from "react";
 
 const Index = () => {
-    useEffect(() => {
-        const login = localStorage.getItem("login");
+  useEffect(() => {
+    const login = localStorage.getItem("login");
 
-        if (login !== "true") {
-            window.location.href = "/login";
-        } if (login === null) {
-            window.location.href = "/login";
-        }
-    }, [])
+    if (login !== "true") {
+      window.location.href = "/login";
+    }
+    if (login === null) {
+      window.location.href = "/login";
+    }
+  }, []);
   return (
     <div>
       <Head>

@@ -32,9 +32,9 @@ const Index = () => {
     const judulRef = query(colRef, where("judul", "==", contentId));
     const res = await getDocs(judulRef);
     res.docs.forEach((doc) => {
-        setArtikel(doc.data());
+      setArtikel(doc.data());
     });
-  }
+  };
 
   useEffect(() => {
     getArtikel();
