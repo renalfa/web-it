@@ -16,7 +16,13 @@ import { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import { useRouter } from "next/router";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import { firestore } from "../../config/firebase";
 
 const Artikel = ({ isLogin }) => {
@@ -30,7 +36,16 @@ const Artikel = ({ isLogin }) => {
       querySnapshot.forEach((doc) => array.push(doc.data()));
       setArtikel(array);
     });
-  }, []);
+  }, [artikel]);
+
+  const deleteContent = async (judul) => {
+    const colRef = collection(firestore, "content_it");
+    const judulRef = query(colRef, where("judul", "==", judul));
+    const res = await getDocs(judulRef);
+    res.docs.forEach((doc) => {
+      deleteDoc(doc.ref);
+    });
+  };
 
   return (
     <section className="section section-lg pt-lg-0 mt--100">
@@ -74,12 +89,26 @@ const Artikel = ({ isLogin }) => {
                         Learn more
                       </Button>
                     </CardBody>
+                    {isLogin && (
+                      <Button
+                        style={{ position: "absolute", top: -10, right: -10 }}
+                        className="btn-icon-only rounded-circle"
+                        color="danger"
+                        onClick={() => deleteContent(data?.judul)}
+                      >
+                        <i className="fa fa-trash text-white"></i>
+                      </Button>
+                    )}
                   </Card>
                 </SwiperSlide>
               ))}
             </Swiper>
           </Col>
-          {isLogin && <Button href="/add" className="mt-4 btn-warning text-white">Tambahkan Konten</Button>}
+          {isLogin && (
+            <Button href="/add" className="mt-4 btn-warning text-white">
+              Tambahkan Konten
+            </Button>
+          )}
         </Row>
       </Container>
     </section>

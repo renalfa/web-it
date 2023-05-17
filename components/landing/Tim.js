@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import Image from "next/image";
 
-const Tim = () => {
+const Tim = ({ isLogin }) => {
   return (
     <section className="section section-lg mt--200">
       <Container>
@@ -18,7 +18,7 @@ const Tim = () => {
             </p>
           </Col>
         </Row>
-        <Row>
+        <Row className="justify-content-center">
           {karyawan.map((data, i) => (
             <Col key={i} className="d-block mb-5 mb-lg-0" lg="3" md="6">
               <Card className="rounded-5 card-lift--hover shadow border-0 py-4 h-100">
@@ -42,7 +42,7 @@ const Tim = () => {
                         href="#pablo"
                         onClick={(e) => e.preventDefault()}
                       >
-                        <i className="fa fa-twitter" />
+                        <i className="fa fa-instagram" />
                       </Button>
                       <Button
                         className="btn-icon-only rounded-circle ml-1"
@@ -50,7 +50,7 @@ const Tim = () => {
                         href="#pablo"
                         onClick={(e) => e.preventDefault()}
                       >
-                        <i className="fa fa-facebook" />
+                        <i className="fa fa-whatsapp" />
                       </Button>
                       <Button
                         className="btn-icon-only rounded-circle ml-1"
@@ -58,7 +58,7 @@ const Tim = () => {
                         href="#pablo"
                         onClick={(e) => e.preventDefault()}
                       >
-                        <i className="fa fa-dribbble" />
+                        <i className="fa fa-linkedin" />
                       </Button>
                     </div>
                   </div>
@@ -66,6 +66,7 @@ const Tim = () => {
               </Card>
             </Col>
           ))}
+        {isLogin && <Button href="/add/tim" className="mt-5 btn-warning text-white">Tambahkan Tim</Button>}
         </Row>
       </Container>
     </section>

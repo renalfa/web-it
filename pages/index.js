@@ -35,7 +35,7 @@ export default function Home() {
       <Project />
       {/* <Carousel /> */}
       <Visi />
-      <Tim />
+      <Tim isLogin={isLogin}/>
       <Footer />
     </div>
   );
