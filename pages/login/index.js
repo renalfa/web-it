@@ -21,11 +21,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { auth, firestore, provider } from "../../config/firebase";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
-import { signInWithPopup } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import { useRouter } from "next/router";
 
 export const Login = () => {
   const router = useRouter();
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
+  const [msg, setMsg] = React.useState("");
+
   const loginWithGoogle = async () => {
     try {
       const res = await signInWithPopup(auth, provider);
@@ -52,6 +61,47 @@ export const Login = () => {
       router.replace("/login");
     }
   };
+
+  // const register = async () => {
+  //   try {
+  //     const user = {
+  //       name: "Admin IT",
+  //       email: "admin@viapulsa.com",
+  //       password: "admin123",
+  //     };
+  //     const res = await createUserWithEmailAndPassword(
+  //       auth,
+  //       user.email,
+  //       user.password
+  //     );
+  //     const akun = res.user;
+  //     await addDoc(collection(firestore, "adminIT"), {
+  //       uid: akun.uid,
+  //       name: user.name,
+  //       authProvider: "local",
+  //       email: user.email,
+  //     });
+  //   } catch (error) {
+  //     console.log(error.message);
+  //     alert(error);
+  //   }
+  // };
+
+  const loginWithCredentials = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log("Berhasil");
+      router.replace("/");
+      localStorage.setItem("login", "true");
+    } catch (error) {
+      console.log("email atau password yang anda masukan salah");
+      setMsg("email atau password yang anda masukan salah");
+      setTimeout(() => {
+        setMsg("");
+      }, 2000);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -113,7 +163,12 @@ export const Login = () => {
                               <i className="ni ni-email-83" />
                             </InputGroupText>
                           </InputGroupAddon>
-                          <Input placeholder="Email" type="email" />
+                          <Input
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Email"
+                            type="email"
+                          />
                         </InputGroup>
                       </FormGroup>
                       <FormGroup>
@@ -124,6 +179,8 @@ export const Login = () => {
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                             placeholder="Password"
                             type="password"
                             autoComplete="off"
@@ -144,14 +201,22 @@ export const Login = () => {
                         </label>
                       </div>
                       <div className="text-center">
-                        <Button className="my-4" color="primary" type="button">
+                        <Button
+                          onClick={() => loginWithCredentials()}
+                          className="my-4"
+                          color="primary"
+                          type="button"
+                        >
                           Sign in
                         </Button>
+                      </div>
+                      <div className="text-center text-red mb-2">
+                        <small>{msg}</small>
                       </div>
                     </Form>
                   </CardBody>
                 </Card>
-                <Row className="mt-3">
+                {/* <Row className="mt-3">
                   <Col xs="6">
                     <a
                       className="text-light"
@@ -170,7 +235,7 @@ export const Login = () => {
                       <small>Create new account</small>
                     </a>
                   </Col>
-                </Row>
+                </Row> */}
               </Col>
             </Row>
           </Container>
