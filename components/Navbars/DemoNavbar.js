@@ -40,7 +40,7 @@ const DemoNavbar = () => {
 
   useEffect(() => {
     const login = localStorage.getItem("login");
-    console.log(login);
+
     if (login === null) setIsLogin(false);
     else setIsLogin(true);
   }, [])
@@ -79,7 +79,7 @@ const DemoNavbar = () => {
             >
               <div className="navbar-collapse-header">
                 <Row>
-                  <Col className="collapse-close" xs="6">
+                  <Col className="collapse-close text-center" xs="12">
                     <button className="navbar-toggler" id="navbar_global">
                       <span />
                       <span />
@@ -199,7 +199,7 @@ const DemoNavbar = () => {
                     Follow us on Instagram
                   </UncontrolledTooltip>
                 </NavItem>
-                <NavItem className="d-none d-lg-block ml-lg-4">
+                <NavItem className="d-block ml-lg-4">
                   {isLogin ? (
                     <Button onClick={logout} className="btn-warning shadow">
                       <span className="text-white">Logout</span>

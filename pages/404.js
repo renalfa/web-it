@@ -11,7 +11,7 @@ const ErrorPage = () => {
           name="description"
           content="The page you are looking for is not found go back to the homepage"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/ico.webp" />
       </Head>
       <Container>
         <Row className="justify-content-center">

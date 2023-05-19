@@ -21,7 +21,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { useRouter } from "next/router";
 
 const Insert = () => {
-    const router = useRouter();
+  const router = useRouter();
   const [file, setFile] = useState("");
 
   const [judul, setJudul] = useState("");
@@ -45,25 +45,27 @@ const Insert = () => {
           const colRef = collection(firestore, "content_it");
           const data = { judul, content, imgurl: downloadURL };
 
-          await addDoc(colRef, data).then(() => {
-            setJudul("");
-            setContent("");
-            setFile("");
-            setIsSuccess(true);
-            setMsg("Konten berhasil ditambahkan");
-            setTimeout(() => {
+          await addDoc(colRef, data)
+            .then(() => {
+              setJudul("");
+              setContent("");
+              setFile("");
+              setIsSuccess(true);
+              setMsg("Konten berhasil ditambahkan");
+              setTimeout(() => {
                 setIsSuccess(false);
                 setMsg("");
                 router.replace("/");
-            }, 3000);
-          }).catch((err) => {
-            setIsError(true);
-            setMsg(err.message);
-            setTimeout(() => {
+              }, 3000);
+            })
+            .catch((err) => {
+              setIsError(true);
+              setMsg(err.message);
+              setTimeout(() => {
                 setIsError(false);
                 setMsg("");
-            }, 3000);
-          });
+              }, 3000);
+            });
         })
     );
   };
@@ -166,13 +168,14 @@ const Insert = () => {
           </Row>
         </Container>
 
-        <Alert className="position-absolute w-25 ml-3" isOpen={isSuccess || isError} color={isSuccess ? "success" : "error"}>
-          <strong>{isSuccess ? "Success!" : "Error!"}</strong>{msg}
+        <Alert
+          className="position-absolute w-25 ml-3"
+          isOpen={isSuccess || isError}
+          color={isSuccess ? "success" : "error"}
+        >
+          <strong>{isSuccess ? "Success!" : "Error!"}</strong>
+          {msg}
         </Alert>
-        {/* <FormGroup>
-                    <Input type='file' name='file' onChange={(e) => setFile(e.target.files[0]) } accept="image/*" />
-                    <Button onClick={() => handleUpload()}>Submit</Button>
-                </FormGroup> */}
       </section>
     </>
   );

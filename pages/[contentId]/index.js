@@ -1,22 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-// nodejs library that concatenates classes
-// reactstrap components
-import {
-  Badge,
-  Button,
-  Card,
-  CardBody,
-  CardImg,
-  FormGroup,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
-  Container,
-  Row,
-  Col,
-} from "reactstrap";
+import Head from "next/head";
+import { Card, CardImg, Container, Row, Col } from "reactstrap";
 import DemoNavbar from "../../components/Navbars/DemoNavbar";
 import Footer from "../../components/footer/Footer";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -42,6 +27,14 @@ const Index = () => {
 
   return (
     <>
+      <Head>
+        <title>Viapulsa - Divisi IT</title>
+        <meta
+          name="description"
+          content="NextJs UI kit | Free UI kit built with bootstrap"
+        />
+        <link rel="icon" href="/ico.webp" />
+      </Head>
       <DemoNavbar />
       <div className="position-relative" style={{ maxHeight: 200 }}>
         {/* Hero for FREE version */}

@@ -48,7 +48,7 @@ const Artikel = ({ isLogin }) => {
   };
 
   return (
-    <section className="section section-lg pt-lg-0 mt--100">
+    <section className="section section-lg pt-0 mt--100">
       <Container>
         <Row className="justify-content-center">
           <Col lg="12">
