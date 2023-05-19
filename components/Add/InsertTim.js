@@ -1,11 +1,9 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import {
-  Badge,
   Button,
   Card,
   CardBody,
-  CardImg,
   FormGroup,
   Input,
   InputGroupAddon,
@@ -20,7 +18,6 @@ import {
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { firestore, storage } from "../../config/firebase";
 import { addDoc, collection } from "firebase/firestore";
-
 
 const InsertTim = () => {
   const router = useRouter();
@@ -48,7 +45,14 @@ const InsertTim = () => {
       () =>
         getDownloadURL(task.snapshot.ref).then(async (downloadURL) => {
           const colRef = collection(firestore, "tim_it");
-          const data = { nama, jabatan, instagram, wa, linkedin, imgurl: downloadURL };
+          const data = {
+            nama,
+            jabatan,
+            instagram,
+            wa,
+            linkedin,
+            imgurl: downloadURL,
+          };
 
           await addDoc(colRef, data)
             .then(() => {
@@ -116,10 +120,6 @@ const InsertTim = () => {
                   <h4 className="mb-3 text-center">
                     Siapa yang ingin anda masukan?
                   </h4>
-                  {/* <p className="mt-0 text-center">
-                    Silakan isi form dibawah ini untuk mengirimkan konten yang
-                    ingin anda masukan.
-                  </p> */}
                   <FormGroup>
                     <Label>Silakan input foto</Label>
                     <InputGroup className="input-group-alternative">
@@ -152,7 +152,7 @@ const InsertTim = () => {
                     <InputGroup className="input-group-alternative">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                            <i className="fa fa-briefcase" />
+                          <i className="fa fa-briefcase" />
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
@@ -168,7 +168,7 @@ const InsertTim = () => {
                     <InputGroup className="input-group-alternative">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                            <i className="fa fa-instagram" />
+                          <i className="fa fa-instagram" />
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
@@ -183,7 +183,7 @@ const InsertTim = () => {
                     <InputGroup className="input-group-alternative">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                            <i className="fa fa-whatsapp" />
+                          <i className="fa fa-whatsapp" />
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
@@ -198,7 +198,7 @@ const InsertTim = () => {
                     <InputGroup className="input-group-alternative">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                            <i className="fa fa-linkedin" />
+                          <i className="fa fa-linkedin" />
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
@@ -216,7 +216,7 @@ const InsertTim = () => {
                       color="default"
                       size="lg"
                       type="button"
-                        // onClick={() => handleUpload()}
+                      onClick={() => handleUpload()}
                     >
                       Submit
                     </Button>

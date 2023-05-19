@@ -1,11 +1,25 @@
-import React from "react";
-import { Button, Container, Row, Col, Card } from "reactstrap";
-import { karyawan } from "../../assets/data/data";
+import React, { useEffect, useState } from "react";
+import { Button, Container, Row, Col, Card, CardImg } from "reactstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
-import Image from "next/image";
+import { collection, getDocs } from "firebase/firestore";
+import { firestore } from "../../config/firebase";
+
+import "swiper/css";
+import "swiper/css/pagination";
 
 const Tim = ({ isLogin }) => {
+  const [tim, setTim] = useState([]);
+
+  useEffect(() => {
+    const colRef = collection(firestore, "tim_it");
+    getDocs(colRef).then((querySnapshot) => {
+      let array = [];
+      querySnapshot.forEach((doc) => array.push(doc.data()));
+      setTim(array);
+    });
+  }, [tim]);
+
   return (
     <section className="section section-lg mt--200">
       <Container>
@@ -27,21 +41,25 @@ const Tim = ({ isLogin }) => {
               pagination={{ clickable: true }}
               modules={[Pagination]}
             >
-              {karyawan.map((data, i) => (
+              {tim.map((data, i) => (
                 <SwiperSlide key={i} style={{ maxWidth: 250 }}>
-                  <Card className="rounded-5 card-lift--hover shadow border-0 py-4 h-100">
+                  <Card className="rounded card-lift--hover shadow border-0 py-4">
                     <div className="px-4 h-100 text-center">
-                      <Image
+                      <CardImg
                         alt="..."
                         className="rounded-circle img-center img-fluid shadow shadow-lg--hover"
-                        src={require("../../assets/img/theme/team-1-800x800.jpg")}
-                        width={100}
-                        height={100}
+                        src={data.imgurl}
+                        style={{
+                          height: 120,
+                          width: 120,
+                          objectFit: "cover",
+                          objectPosition: "center",
+                        }}
                       />
                       <div className="pt-4 text-center">
                         <h6 className="title">
                           <span className="d-block mb-1">{data.nama}</span>
-                          <small className="text-muted">{data.as}</small>
+                          <small className="text-muted">{data.jabatan}</small>
                         </h6>
                         <div className="mt-3">
                           <Button
