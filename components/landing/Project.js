@@ -15,14 +15,13 @@ const Project = () => {
         <Row className="justify-content-center">
           <Col lg="12">
             <Swiper
-              style={{ padding: 40 }}
               slidesPerView={1}
               spaceBetween={15}
               pagination={{ clickable: true }}
               modules={[Pagination]}
             >
               {[1, 2, 3, 4, 5, 6, 7, 8].map((data, i) => (
-                <SwiperSlide key={i} style={{ maxWidth: 1000 }}>
+                <SwiperSlide key={i} style={{ maxWidth: 1200 }}>
                   <Card className="card-lift--hover shadow border-0">
                     {/* <Link href="/landing"> */}
                     <Image
