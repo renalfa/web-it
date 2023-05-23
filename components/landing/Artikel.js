@@ -60,13 +60,13 @@ const Artikel = ({ isLogin }) => {
               modules={[Pagination]}
             >
               {artikel.map((data, i) => (
-                <SwiperSlide key={i} style={{ maxWidth: 300 }}>
+                <SwiperSlide key={i} style={{ maxWidth: 400 }}>
                   <Card className="card-lift--hover shadow border-0">
                     <CardImg
                       top
                       src={data?.imgurl}
                       style={{
-                        maxHeight: 180,
+                        maxHeight: 240,
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -75,12 +75,12 @@ const Artikel = ({ isLogin }) => {
                       <h6 className="text-primary text-uppercase">
                         {data?.judul}
                       </h6>
-                      <p className="description mt-3">
+                      {/* <p className="description mt-3">
                         {parser(
                           data.content.slice(0, 150) +
                             (data.content.length > 150 ? "..." : "")
                         )}
-                      </p>
+                      </p> */}
                       <Button
                         className="mt-2"
                         color="primary"

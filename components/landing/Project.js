@@ -22,7 +22,7 @@ const Project = () => {
             >
               {[1, 2, 3, 4, 5, 6, 7, 8].map((data, i) => (
                 <SwiperSlide key={i} style={{ maxWidth: 1200 }}>
-                  <Card className="card-lift--hover shadow border-0">
+                  <Card className="shadow border-0">
                     {/* <Link href="/landing"> */}
                     <Image
                       alt="..."

@@ -1,9 +1,7 @@
 import {
-  Badge,
   Button,
   Card,
   CardBody,
-  CardImg,
   FormGroup,
   Input,
   InputGroupAddon,
@@ -13,12 +11,15 @@ import {
   Row,
   Col,
   Alert,
+  Modal,
+  Spinner,
 } from "reactstrap";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import React, { useEffect, useState } from "react";
 import { firestore, storage } from "../../config/firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { useRouter } from "next/router";
+import Lottie from "lottie-react";
 
 const Insert = () => {
   const router = useRouter();
@@ -27,12 +28,14 @@ const Insert = () => {
   const [judul, setJudul] = useState("");
   const [content, setContent] = useState("");
 
+  const [loading, setLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isError, setIsError] = useState(false);
   const [msg, setMsg] = useState("");
 
   const handleUpload = () => {
     if (!file) alert("Please select a file!");
+    setLoading(true);
     const fotoRef = ref(storage, `/contentIT/${file?.name}`);
     const task = uploadBytesResumable(fotoRef, file);
 
@@ -55,8 +58,9 @@ const Insert = () => {
               setTimeout(() => {
                 setIsSuccess(false);
                 setMsg("");
+                setLoading(false);
                 router.replace("/");
-              }, 3000);
+              }, 1500);
             })
             .catch((err) => {
               setIsError(true);
@@ -140,14 +144,11 @@ const Insert = () => {
                     </InputGroup>
                   </FormGroup>
                   <FormGroup className="mb-4">
-                    <Input
-                      className="form-control-alternative"
-                      cols="80"
-                      placeholder="Isi Content..."
-                      rows="4"
-                      type="textarea"
-                      value={content}
-                      onChange={(e) => setContent(e.target.value)}
+                    <div
+                      className="form-control-alternative bg-white rounded p-2"
+                      style={{ minHeight: "200px" }}
+                      contentEditable
+                      onInput={(e) => setContent(e.target.innerHTML)}
                     />
                   </FormGroup>
                   <div>
@@ -159,7 +160,7 @@ const Insert = () => {
                       type="button"
                       onClick={() => handleUpload()}
                     >
-                      Submit
+                      { loading && <Spinner size="sm">Loading...</Spinner>} Submit
                     </Button>
                   </div>
                 </CardBody>
@@ -167,7 +168,8 @@ const Insert = () => {
             </Col>
           </Row>
         </Container>
-
+        <Modal isOpen={loading} backdrop >
+        </Modal>
         <Alert
           className="position-absolute w-25 ml-3"
           isOpen={isSuccess || isError}

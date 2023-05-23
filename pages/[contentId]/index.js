@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import { Card, CardImg, Container, Row, Col } from "reactstrap";
 import DemoNavbar from "../../components/Navbars/DemoNavbar";
 import Footer from "../../components/footer/Footer";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { firestore } from "../../config/firebase";
+import Item from "../../components/detail/Item";
 
 const Index = () => {
   const router = useRouter();
@@ -67,24 +67,7 @@ const Index = () => {
         </section>
       </div>
       <section className="section mt--100">
-        <Container>
-          <Row className="row-grid align-items-center rounded bg-secondary">
-            <Col>
-              <div className="px-md-5 py-3 py-md-5">
-                <Card className="bg-default border-0">
-                  <CardImg
-                    alt="..."
-                    src={artikel?.imgurl}
-                    top
-                    style={{ maxHeight: "500px", objectFit: "cover" }}
-                  />
-                </Card>
-                <h3 className="mt-4">{artikel?.judul}</h3>
-                <p className="text-justify">{artikel?.content}</p>
-              </div>
-            </Col>
-          </Row>
-        </Container>
+        <Item {...artikel} />
       </section>
       <Footer />
     </>
