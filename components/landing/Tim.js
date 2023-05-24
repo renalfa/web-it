@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Button, Container, Row, Col, Card, CardImg } from "reactstrap";
+import {
+  Button,
+  Container,
+  Row,
+  Col,
+  Card,
+  CardImg,
+  CardFooter,
+} from "reactstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import { collection, getDocs } from "firebase/firestore";
@@ -21,7 +29,7 @@ const Tim = ({ isLogin }) => {
   }, [tim]);
 
   return (
-    <section className="section section-lg mt--200">
+    <section id="tim" className="section section-lg mt--200">
       <Container>
         <Row className="justify-content-center text-center">
           <Col lg="8">
@@ -43,7 +51,7 @@ const Tim = ({ isLogin }) => {
             >
               {tim.map((data, i) => (
                 <SwiperSlide key={i} style={{ maxWidth: 250 }}>
-                  <Card className="rounded card-lift--hover shadow border-0 py-4">
+                  <Card className="rounded card-lift--hover shadow border-0 pt-4">
                     <div className="px-4 h-100 text-center">
                       <CardImg
                         alt="..."
@@ -60,6 +68,7 @@ const Tim = ({ isLogin }) => {
                         <h6 className="title">
                           <span className="d-block mb-1">{data.nama}</span>
                           <small className="text-muted">{data.jabatan}</small>
+
                         </h6>
                         <div className="mt-3">
                           <Button
@@ -88,6 +97,24 @@ const Tim = ({ isLogin }) => {
                           </Button>
                         </div>
                       </div>
+                      {isLogin && (
+                        <>
+                          <Button
+                            style={{
+                              position: "absolute",
+                              top: -10,
+                              right: -10,
+                            }}
+                            className="btn-icon-only rounded-circle"
+                            color="danger"
+                          >
+                            <i className="fa fa-trash text-white"></i>
+                          </Button>
+                          <CardFooter className="text-center bg-white border-0">
+                            <Button href={`/edit/tim/${data?.nama}`} color="primary">edit</Button>
+                          </CardFooter>
+                        </>
+                      )}
                     </div>
                   </Card>
                 </SwiperSlide>

@@ -89,6 +89,8 @@ const DemoNavbar = () => {
               </div>
               <Nav className="navbar-nav-hover align-items-lg-center" navbar>
                 <NavLink nav href="/" className="text-white">Home</NavLink>
+                <NavLink nav href="#content" className="text-white">Content</NavLink>
+                <NavLink nav href="#tim" className="text-white">Tim</NavLink>
                 <NavLink nav href="https://docs.google.com/document/d/10SJsrIefV-ob2uH8BLyYSuf1b8zyKUcM/edit?usp=sharing&ouid=107195430791084387769&rtpof=true&sd=true" target="_blank" className="text-white">Inventaris</NavLink>
                 {/* <UncontrolledDropdown nav>
                   <DropdownToggle nav>
